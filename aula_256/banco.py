@@ -14,29 +14,29 @@ class Banco:
         self.clientes = clientes or []
         self.contas = contas or []
 
-    def _checa_agencia(self, conta):
-        if conta.agencia in self.agencias:
+    def _checa_agencia(self, conta):  # type: ignore
+        if conta.agencia in self.agencias:  # type: ignore
             print('_checa_agencia', True)
             return True
         print('_checa_agencia', False)
         return False
 
-    def _checa_cliente(self, cliente):
+    def _checa_cliente(self, cliente):  # type: ignore
         if cliente in self.clientes:
             print('checa_clientes', True)
             return True
         print('_checa_cliente', False)
         return False
 
-    def _checa_conta(self, conta):
+    def _checa_conta(self, conta):  # type: ignore
         if conta in self.contas:
             print('checa_conta', True)
             return True
         print('checa_conta', False)
         return False
 
-    def _checa_se_conta_e_do_cliente(self, cliente, conta):
-        if conta is cliente.conta:
+    def _checa_se_conta_e_do_cliente(self, cliente, conta):  # type: ignore
+        if conta is cliente.consta:  # type: ignore
             print('ccheca_se_conta_e_do_cliente', True)
             return True
         print('checa_se_conta_e_do_cliente', False)
