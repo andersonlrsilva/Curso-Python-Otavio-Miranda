@@ -8,3 +8,4 @@ def recursiva(inicio=0, fim=4):
 
 
 print(recursiva())
+print  ('teste')
