@@ -8,7 +8,7 @@ def mu_open(caminho_arquivo, modo):
         arquivo = open(caminho_arquivo, modo, encoding='utf8')
         yield arquivo
     except Exception as e:
-        print ('Ocorreu erro, e')
+        print('Ocorreu erro, e')
     finally:
         print('Fechando arquivo')
         arquivo.close()
