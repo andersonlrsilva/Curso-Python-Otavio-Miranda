@@ -8,7 +8,7 @@
 #               -> Widget 3 (botao3)
 #   -> show
 # -> exec
-
+from PySide6.QtCore import Slot
 from PySide6.QtWidgets import (QApplication, QPushButton, QMainWindow,
                                QVBoxLayout, QHBoxLayout, QGridLayout, QWidget)
 import sys
@@ -41,9 +41,20 @@ layout.addWidget(botao3, 2, 1, 1, 2)
 # primeira ação menu
 
 
+@Slot()
 def slot_example(status_bar):
     print(123)
     status_bar.showMessage('O meu slot foi executado')
+
+
+def outro_slot(checked):
+    print('Ésta marcado?', checked)
+
+
+def terceiro_slot(action):
+    def inner():
+        outro_slot(action.isChecked())
+    return inner
 
 
 # statusbar
@@ -55,10 +66,20 @@ menu = window.menuBar()
 primeiro_menu = menu.addMenu("Arquivo")
 primeira_acao = primeiro_menu.addAction('Imprimir')
 segunda_acao = primeiro_menu.addAction('Excluir')
-primeira_acao.triggered.connect(lambda: slot_example(status_bar))
+segunda_acao.triggered.connect(lambda: slot_example(status_bar))
+
+
+terceira_acao = primeiro_menu.addAction('Sair')
+terceira_acao.setCheckable(True)
+terceira_acao.toggled.connect(outro_slot)  # type: ignore
+# terceira_acao.hovered.connect(terceiro_slot(terceira_acao))  # type:ignoredterceira_acao.hovered.connect(terceiro_slot(terceira_acao))  # type:ignored
+
+
+botao1.clicked.connect(terceiro_slot(terceira_acao))
+
 
 segundo_menu = menu.addMenu("Editar")
 primeira_acao = segundo_menu.addAction('Cortar')
 
 window.show()
-app.exec()
+app.exec()  # loop da aplicação
