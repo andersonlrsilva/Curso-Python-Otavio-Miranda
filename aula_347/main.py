@@ -1,6 +1,6 @@
 import sys
 
-from buttons import Button, ButtonsGrid
+from buttons import ButtonsGrid
 from main_window import Mainwindow
 from display import Display
 from info import Info
@@ -22,19 +22,15 @@ if __name__ == '__main__':
     app.setWindowIcon(icon)
 
     # Info
-    info = Info("2.0 ^ 10.0 = 1024")
+    info = Info("Sua conta")
     window.addWidgetToVLayout(info)
 
     # Display
     display = Display()
     window.addWidgetToVLayout(display)
 
-    # buttons
-    button = Button('texto do botao')
-    window.addWidgetToVLayout(button)
-
     # Grid
-    buttonsGrid = ButtonsGrid()
+    buttonsGrid = ButtonsGrid(display, info, window)
     window.vLayout.addLayout(buttonsGrid)
 
     # Executa tudo
