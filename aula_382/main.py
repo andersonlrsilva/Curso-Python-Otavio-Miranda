@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QApplication, QWidget
 from workerui import Ui_myWidget
 
 
-class Worker1(QObject):
+class Worker(QObject):
     started = Signal(str)
     progressed = Signal(str)
     finished = Signal(str)
@@ -31,7 +31,7 @@ class MyWidget(QWidget, Ui_myWidget):
 
     # THREAD 1
     def hardWork1(self):
-        self._worker = Worker1()
+        self._worker = Worker()
         self._thread = QThread()
 
         worker = self._worker
@@ -54,11 +54,13 @@ class MyWidget(QWidget, Ui_myWidget):
 
         thread.start()
 
-    def worker1Started(self):
+    def worker1Started(self, value):
         self.Button1.setDisabled(True)
+        self.label1.setText(value)
         print("worker iniciado")
 
-    def worker1Progressed(self):
+    def worker1Progressed(self, value):
+        self.label1.setText(value)
         print("Em Progresso")
 
     def worker1Finished(self):
@@ -68,7 +70,7 @@ class MyWidget(QWidget, Ui_myWidget):
     # THREAD 2
 
     def hardWork2(self):
-        self._worker2 = Worker1()
+        self._worker2 = Worker()
         self._thread2 = QThread()
 
         worker = self._worker2
@@ -91,11 +93,13 @@ class MyWidget(QWidget, Ui_myWidget):
 
         thread.start()
 
-    def worker2Started(self):
+    def worker2Started(self, value):
         self.Button2.setDisabled(True)
+        self.label2.setText(value)
         print("worker iniciado")
 
-    def worker2Progressed(self):
+    def worker2Progressed(self, value):
+        self.label2.setText(value)
         print("Em Progresso")
 
     def worker2Finished(self):
