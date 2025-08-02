@@ -1,3 +1,6 @@
+# EVITANDO SQL INJECTION
+
+
 import os
 from unittest import result
 import dotenv
@@ -33,38 +36,12 @@ with connection.cursor() as cursor:
 # INICIANDO A MANIPULAÇÃO DE DADOS
 
 with connection.cursor() as cursor:
-    cursor.execute(
-        f'INSERT INTO {TABLE_NAME} '
-        '(nome, idade) VALUES ("Luiz", 25) '
-    )
-
-    cursor.execute(
-        f'INSERT INTO {TABLE_NAME} '
-        '(nome, idade) VALUES ("anderson", 43) '
-    )
-
-    cursor.execute(
-        f'INSERT INTO {TABLE_NAME} '
-        '(nome, idade) VALUES ("pedro", 80) '
-    )
-
-    cursor.execute(
-        f'INSERT INTO {TABLE_NAME} '
-        '(nome, idade) VALUES ("Martha", 25) '
-    )
-connection.commit()
-
-
-# lendo valores com select
-
-with connection.cursor() as cursor:
     sql = (
-        f'SELECT * FROM {TABLE_NAME} '
+        f'INSERT INTO {TABLE_NAME} '
+        '(nome, idade) VALUES (%s, %s) '
     )
-    cursor.execute(sql)
-
-    data5 = cursor.fetchall()
-    # print(data5)
-
-    for row in data5:
-        print(row)
+    data = ('luiz', 18)
+    result = cursor.execute(sql, data)
+    print(sql, data)
+    print(result)
+connection.commit()
