@@ -17,7 +17,7 @@ connection = pymysql.connect(
 cursor = connection.cursor()
 
 
-# Criando a tabela costumers
+# CRIANDO A TABELA COSTUMERS
 with connection.cursor() as cursor:
     cursor.execute(
         f'CREATE TABLE IF NOT EXISTS {TABLE_NAME} ('
