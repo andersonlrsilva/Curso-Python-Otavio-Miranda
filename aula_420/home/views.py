@@ -1,10 +1,20 @@
+
 from django.shortcuts import render
+from django.urls import path
 
 
 # Create your views here.
 
 
-def home(request):
+def index(request):
+    context = {
+        'text': 'Pagina Inicial',
+        'title': 'Pagina inicial - '
+    }
+
     return render(
-        request, 'home/index.html'
+        request,
+        'home/index.html',
+        context,
+
     )

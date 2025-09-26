@@ -1,2 +1,16 @@
 {% extends "global/base.html" %}
-{% block texto %} Novo index do blog{% endblock texto %}
+
+{%block texto %} {{text}} {%endblock texto %}
+
+
+{% block posts %}
+    {% for post in posts%}
+      {% include 'global/partials/postblock.html' %}
+    {% endfor %}
+
+{% endblock posts %}
+
+
+
+
+
